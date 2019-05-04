@@ -1,30 +1,61 @@
 import React from 'react';
 import DogImage from './dogimage.js';
 import img from '../images/logo.svg';
-import { HashRouter, BrowserRouter, Route, Link } from 'react-router-dom';
+import axios from 'axios'
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {dog: "yes"};
+  constructor(props) {
+    super(props);
+    this.state = {
+      url: "https://dog.ceo/api/breed/husky/images/random",
+      breed: "",
+      image: ""
+    };
+
+    this.getDogs = this.getDogs.bind(this);
+  }
+
+  componentDidMount(){
+    axios.get('https://dog.ceo/api/breed/husky/images/random')
+    .then(response => {
+      console.log(response.data);
+      this.setState({ image: response.data.message });
+      console.log(this.state);
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  }
+
+
+  getDogs(){
+    console.log("doggies");
+    axios.get('https://dog.ceo/api/breed/husky/images/random')
+    .then(response => {
+      console.log(response.data.message);
+      this.setState({ image: response.data.message });
+      console.log(this.state);
+    })
+    .catch(error => {
+      console.log(error);
+    })
+    console.log("doggies 2");
   }
 
   render() {
+
     return (
       <main>
         <h1>get dogs</h1>
         <h2>abigail boyer, aboyer1@hawk.iit.edu, ITMD 565</h2>
-        <p>he is a good boy</p>
-        <DogImage></DogImage>
         <p>click to see more puppies</p>
-        <button onClick={getDogs}>get puppies</button>
+        <button onClick={this.getDogs}>get puppies</button>
+        <hr />
+        <img src={this.state.image}></img>
+        <p>he is a good boy</p>
       </main>
     );
   }
-}
-
-function getDogs() {
-    console.log('The link was clicked.');
 }
 
 export default App;
