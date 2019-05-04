@@ -4,7 +4,12 @@ import img from '../images/logo.svg';
 import { HashRouter, BrowserRouter, Route, Link } from 'react-router-dom';
 
 class App extends React.Component {
-  render(){
+  constructor() {
+    super();
+    this.state = {dog: "yes"};
+  }
+
+  render() {
     return (
       <main>
         <h1>get dogs</h1>
