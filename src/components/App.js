@@ -44,6 +44,8 @@ class App extends React.Component {
 
   render() {
 
+    let breed = "husky";
+
     return (
       <main>
         <h1>get dogs</h1>
@@ -51,7 +53,7 @@ class App extends React.Component {
         <p>click to see more puppies</p>
         <button onClick={this.getDogs}>get puppies</button>
         <hr />
-        <img src={this.state.image}></img>
+        <DogImage image={this.state.image} breed={breed} />
         <p>he is a good boy</p>
       </main>
     );
