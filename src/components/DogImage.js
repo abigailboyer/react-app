@@ -1,35 +1,27 @@
 import React from 'react';
 import img from '../images/logo.svg';
+import axios from 'axios';
 
 class DogImage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: null,
-      isLoaded: false,
-      image: []
+      url: "https://dog.ceo/api/breed/husky/images/random",
+      breed: "",
+      image: ""
     };
   }
 
   componentDidMount(){
-    fetch("https://dog.ceo/api/breed/husky/images/random", {mode:'no-cors'})
-      .then(res => res.json())
-      .then((json) => {
-        console.log(json);
-      })
-      .then(
-        (result) => {
-          this.setState({
-            isLoaded: true,
-            image: result.image
-          });
-        },
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        });
+    axios.get('https://dog.ceo/api/breed/husky/images/random')
+    .then(response => {
+      console.log(response.data);
+      this.setState({ image: response.data.message });
+      console.log(this.state)
+    })
+    .catch(error => {
+      console.log(error);
+    })
   }
 
   render() {
