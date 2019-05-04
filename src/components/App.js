@@ -1,7 +1,6 @@
 import React from 'react';
 import DogImage from './dogimage.js';
 import img from '../images/logo.svg';
-import { HashRouter, BrowserRouter, Route, Link } from 'react-router-dom';
 
 class App extends React.Component {
   render(){

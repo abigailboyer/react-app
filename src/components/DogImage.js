@@ -1,16 +1,12 @@
 import React from 'react';
 import img from '../images/logo.svg';
 
-class DogImage extends React.Component {
-  render() {
-    return (
-      <React.Fragment>
+class DogImage extends HTMLElement {
+  constructor() {
+    super();
 
-
-      </React.Fragment>
-    );
+    
   }
-
 }
 
 export default DogImage;
